@@ -1,0 +1,24 @@
+﻿@{
+	ViewData["Title"] = "Projects";
+	var filter = Context.Request.Query["filter"].ToString().ToLower();
+}
+
+<section id="projects">
+	<header>
+		<h2>@ViewData["Title"]</h2>
+		<button class="btn btn-blue btn-add" type="button">Add Projects</button>
+	</header>
+
+	<div class="project-filters">
+		<a href="?filter=all" class="filter @(filter == "all" || string.IsNullOrEmpty(filter) ? "active" : "")">ALL [0]</a>
+		<a href="?filter=started" class="filter @(filter == "started" ? "active" : "")">STARTED [0]</a>
+		<a href="?filter=completed" class="filter @(filter == "completed" ? "active" : "")">COMPLETED [0]</a>
+	</div>
+
+	<div class="content">
+		<div class="surface">
+		
+		</div>
+	</div>
+
+</section>
