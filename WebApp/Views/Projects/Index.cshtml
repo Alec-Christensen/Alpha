@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<WebApp.Models.Project>
+
+@{
 	ViewData["Title"] = "Projects";
 	var filter = Context.Request.Query["filter"].ToString().ToLower();
 }
@@ -16,7 +18,14 @@
 	</div>
 
 	<div class="content">
-		<div class="surface">
+		<div class="project-list">
+			@foreach (var project in Model)
+			{
+				if (filter == "all" || string.IsNullOrEmpty(filter) || project.Status.ToLower() == filter)
+				{
+					<partial name="Partials/Components/_ProjectCard" model="project" />
+				}
+			}
 		
 		</div>
 	</div>

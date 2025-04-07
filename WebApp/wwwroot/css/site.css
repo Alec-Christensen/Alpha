@@ -298,13 +298,6 @@ section > .content {
     height: 100%;
 }
 
-.surface {
-    background-color: var(--surface-color);
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 4px 3px rgba(196,196,196. 0.1);
-}
-
 #projects {
     display: flex;
     flex-direction: column;
@@ -316,6 +309,12 @@ section > .content {
     grid-template-columns: 1fr;
     gap: 2rem;
 }
+
+    #projects .project-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
 
 .project-filters {
     display: flex;
@@ -358,3 +357,62 @@ section > .content {
                 background-color: var(--blue-accent);
                 border-radius: 1px;
             }
+
+.project.card {
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+    .project.card .card-header {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas:
+            "img name action"
+            "img client action";
+        align-items: center;
+        column-gap: 1rem;
+        row-gap: 0.25rem;
+    }
+
+        .project.card .card-header .project-image {
+            grid-area: img;
+            width: 56px;
+            height: 56px;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+            .project.card .card-header .project-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+        .project.card .card-header .project-name {
+            grid-area: name;
+            font-weight: var(--font-semibold);
+        }
+
+        .project.card .card-header .client-name {
+            grid-area: client;
+            font-size: 0.875rem;
+            color: var(--text-muted-color);
+        }
+
+        .project.card .card-header .project-actions-container {
+            grid-area: action;
+            justify-self: end;
+        }
+
+    .project.card .card-body {
+        min-height: 80px;
+        font-size: 0.95rem;
+        color: var(--text-color);
+    }
+
+

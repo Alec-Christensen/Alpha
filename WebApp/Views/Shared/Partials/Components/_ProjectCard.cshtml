@@ -1,0 +1,23 @@
+﻿@model WebApp.Models.Project
+
+<div class="project card" data-project-id="@Model.ProjectName">
+    <div class="card-header">
+        <div class="project-image">
+            <img src="~/images/project-icon.svg" alt="Project Icon" />
+        </div>
+
+        <div class="project-name">@Model.ProjectName</div>
+        <span class="client-name">@Model.ClientName</span>
+
+        <div class="project-actions-container">
+            <button type="button" class="btn-action">
+                <i class="fa-solid fa-ellipsis"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <p>@Model.Description</p>
+    </div>
+</div>
+
