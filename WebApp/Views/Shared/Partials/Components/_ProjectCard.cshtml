@@ -10,9 +10,25 @@
         <span class="client-name">@Model.ClientName</span>
 
         <div class="project-actions-container">
-            <button type="button" class="btn-action">
+            <button type="button" class="btn-action" data-type="dropdown" data-target="#project-dropdown-@Model.ProjectName.Replace(" ", "-").ToLower()">
                 <i class="fa-solid fa-ellipsis"></i>
             </button>
+
+            <div id="project-dropdown-@Model.ProjectName.Replace(" ", "-").ToLower()" class="dropdown">
+                <div class="dropdown-body">
+                    <nav class="dropdown-actions">
+                        <a class="dropdown-action" href="#">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Edit</span>
+                        </a>
+                        <div class="divider"></div>
+                        <a class="dropdown-action remove" href="#">
+                            <i class="fa-regular fa-trash-can"></i>
+                            <span>Delete Project</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
 
