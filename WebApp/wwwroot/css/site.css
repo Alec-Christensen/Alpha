@@ -132,17 +132,6 @@ html, body {
     gap: 1.2rem;
 }
 
-    .portal >header .settings-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.4rem;
-    color: var(--gray-800);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
     .portal >header .divider {
     width: 1px;
     height: 2rem;
@@ -477,3 +466,81 @@ section > .content {
     padding: 0.25rem;
     font-size: 1rem;
 }
+
+.account-dropdown {
+    position: relative;
+}
+
+    .account-dropdown .dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 0.5rem;
+        background-color: white;
+        border: 1px solid var(--border-color);
+        border-radius: 12px; 
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        min-width: 260px;
+        display: none;
+        z-index: 1000;
+        padding: 0.75rem;
+    }
+
+    .account-dropdown .btn-action i {
+        color: var(--gray-800);
+    }
+
+.dropdown.show {
+    display: block;
+}
+
+.dropdown-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+
+.account-name {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--white-200);
+    border: 2px solid var(--white-200);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    font-weight: var(--font-semibold);
+    font-size: 0.95rem;
+    color: var(--text-color);
+    white-space: nowrap;
+}
+
+    .account-name img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid var(--white-100);
+        object-fit: cover;
+    }
+
+
+.dropdown-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+    .dropdown-action:hover {
+        background-color: #f3f3f3;
+    }

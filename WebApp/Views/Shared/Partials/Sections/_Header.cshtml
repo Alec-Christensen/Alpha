@@ -1,8 +1,29 @@
 ﻿<header>
     <div class="header-right">
-        <button class="settings-btn">
-            <i class="fa-solid fa-gear"></i>
-        </button>
+        <div class="account-dropdown">
+            <button type="button" class="btn-action" data-type="dropdown" data-target="#account-menu">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+
+            <div id="account-menu" class="dropdown">
+                <div class="dropdown-body">
+                    <div class="dropdown-header">
+                        <div class="account-name">
+							<img src="~/images/avatar.svg" alt="Avatar" />
+                            <span>@User.Identity?.Name</span>
+                        </div>
+                    </div>
+                    <nav class="dropdown-actions">
+                        <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+                            <button type="submit" class="dropdown-action">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span>Logout</span>
+                            </button>
+                        </form>
+                    </nav>
+                </div>
+            </div>
+        </div>
 
         <div class="divider"></div>
 
