@@ -70,6 +70,18 @@ namespace WebApp.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Required(ErrorMessage = "You must accept the terms.")]
+            [Display(Name = "Accept Terms")]
+            public bool AcceptTerms { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -156,16 +168,11 @@ namespace WebApp.Areas.Identity.Pages.Account
 
         private IdentityUser CreateUser()
         {
-            try
+            return new IdentityUser
             {
-                return Activator.CreateInstance<IdentityUser>();
-            }
-            catch
-            {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-            }
+                UserName = Input.Email,
+                Email = Input.Email
+            };
         }
 
         private IUserEmailStore<IdentityUser> GetEmailStore()

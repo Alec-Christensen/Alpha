@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApp.Controllers;
 
+[Authorize]
 [Route("projects")]
 public class ProjectsController : Controller
 {
