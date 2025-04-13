@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Data;
-using Microsoft.EntityFrameworkCore;
 using Data.Entities;
+using WebApp.Services;
 
 namespace WebApp.Controllers;
 
@@ -10,17 +9,17 @@ namespace WebApp.Controllers;
 [Route("projects")]
 public class ProjectsController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IProjectService _projectService;
 
-    public ProjectsController(ApplicationDbContext context)
+    public ProjectsController(IProjectService projectService)
     {
-        _context = context;
+        _projectService = projectService;
     }
 
     [HttpGet("")]
     public async Task<IActionResult> Index()
     {
-        var projects = await _context.Projects.ToListAsync();
+        var projects = await _projectService.GetAllAsync();
         return View(projects);
     }
 
@@ -31,9 +30,7 @@ public class ProjectsController : Controller
         if (!ModelState.IsValid)
             return RedirectToAction("Index");
 
-        _context.Projects.Add(project);
-        await _context.SaveChangesAsync();
-
+        await _projectService.CreateAsync(project);
         return RedirectToAction("Index");
     }
 
@@ -41,7 +38,7 @@ public class ProjectsController : Controller
     [HttpGet("edit-project/{id}")]
     public async Task<IActionResult> EditProject(int id)
     {
-        var project = await _context.Projects.FindAsync(id);
+        var project = await _projectService.GetByIdAsync(id);
         if (project == null)
             return NotFound();
 
@@ -56,19 +53,7 @@ public class ProjectsController : Controller
         if (!ModelState.IsValid)
             return View("Partials/Components/_EditProjectModal", updatedProject);
 
-        var project = await _context.Projects.FindAsync(id);
-        if (project == null)
-            return NotFound();
-
-        project.ProjectName = updatedProject.ProjectName;
-        project.ClientName = updatedProject.ClientName;
-        project.Description = updatedProject.Description;
-        project.StartDate = updatedProject.StartDate;
-        project.EndDate = updatedProject.EndDate;
-        project.Budget = updatedProject.Budget;
-        project.Status = updatedProject.Status;
-
-        await _context.SaveChangesAsync();
+        await _projectService.UpdateAsync(updatedProject);
         return RedirectToAction("Index");
     }
 
@@ -76,13 +61,7 @@ public class ProjectsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(int id)
     {
-        var project = await _context.Projects.FindAsync(id);
-        if (project == null)
-            return NotFound();
-
-        _context.Projects.Remove(project);
-        await _context.SaveChangesAsync();
-
+        await _projectService.DeleteAsync(id);
         return RedirectToAction("Index");
     }
 }
