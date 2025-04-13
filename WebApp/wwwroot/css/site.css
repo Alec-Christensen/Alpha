@@ -413,6 +413,7 @@ section > .content {
         min-height: 80px;
         font-size: 0.95rem;
         color: var(--text-color);
+        word-break: break-word;
     }
 
 .dropdown {
@@ -712,5 +713,44 @@ a {
     margin-bottom: 2rem;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+    .modal.show {
+        display: flex;
+    }
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-icon {
+    width: 120px;
+    margin: 0 auto 1rem;
+    display: block;
+}
 
 
