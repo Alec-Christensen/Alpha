@@ -3,6 +3,10 @@
 @{
 	ViewData["Title"] = "Projects";
 	var filter = Context.Request.Query["filter"].ToString().ToLower();
+	var totalCount = Model.Count;
+	var startedCount = Model.Count(p => p.Status.ToLower() == "started");
+	var completedCount = Model.Count(p => p.Status.ToLower() == "completed");
+
 }
 
 <section id="projects">
@@ -12,10 +16,17 @@
 	</header>
 
 	<div class="project-filters">
-		<a href="?filter=all" class="filter @(filter == "all" || string.IsNullOrEmpty(filter) ? "active" : "")">ALL [0]</a>
-		<a href="?filter=started" class="filter @(filter == "started" ? "active" : "")">STARTED [0]</a>
-		<a href="?filter=completed" class="filter @(filter == "completed" ? "active" : "")">COMPLETED [0]</a>
+		<a href="?filter=all" class="filter @(filter == "all" || string.IsNullOrEmpty(filter) ? "active" : "")">
+			ALL [@totalCount]
+		</a>
+		<a href="?filter=started" class="filter @(filter == "started" ? "active" : "")">
+			STARTED [@startedCount]
+		</a>
+		<a href="?filter=completed" class="filter @(filter == "completed" ? "active" : "")">
+			COMPLETED [@completedCount]
+		</a>
 	</div>
+
 
 	<div class="content">
 		<div class="project-list">
