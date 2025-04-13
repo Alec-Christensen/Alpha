@@ -22,10 +22,13 @@
                             <span>Edit</span>
                         </button>
                         <div class="divider"></div>
-                        <a class="dropdown-action remove" href="#">
-                            <i class="fa-regular fa-trash-can"></i>
-                            <span>Delete Project</span>
-                        </a>
+                        <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="dropdown-action remove">
+                                <i class="fa-regular fa-trash-can"></i>
+                                <span>Delete Project</span>
+                            </button>
+                        </form>
                     </nav>
                 </div>
             </div>
