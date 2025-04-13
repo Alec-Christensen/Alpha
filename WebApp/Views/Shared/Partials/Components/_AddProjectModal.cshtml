@@ -1,33 +1,38 @@
 ﻿<div id="addProjectModal" class="modal">
     <div class="modal-content">
         <button class="close-modal" data-close>&times;</button>
-        <h2>Add Project</h2>
+        <h3>Add Project</h3>
         <img src="~/images/project-modal-icon.svg" alt="Project Icon" class="modal-icon" />
         <form asp-controller="Projects" asp-action="Create" method="post">
             @Html.AntiForgeryToken()
             <div class="form-group">
                 <label>Project Name</label>
-                <input name="ProjectName" class="form-input" required />
+                <input name="ProjectName" class="form-input" placeholder="Project Name" required />
             </div>
             <div class="form-group">
                 <label>Client Name</label>
-                <input name="ClientName" class="form-input" required />
+                <input name="ClientName" class="form-input" placeholder="Client Name" required />
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <textarea name="Description" class="form-input" rows="3" required></textarea>
+                <textarea name="Description" class="form-input" rows="3" placeholder="Type something" required></textarea>
             </div>
-            <div class="form-group">
-                <label>Start Date</label>
-                <input name="StartDate" type="date" class="form-input" required />
+            <div class="form-horizontal-group">
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <input name="StartDate" type="date" class="form-input" required />
+                </div>
+                <div class="form-group">
+                    <label>End Date</label>
+                    <input name="EndDate" type="date" class="form-input" />
+                </div>
             </div>
-            <div class="form-group">
-                <label>End Date</label>
-                <input name="EndDate" type="date" class="form-input" />
-            </div>
-            <div class="form-group">
+            <div class="form-group icon-group">
                 <label>Budget</label>
-                <input name="Budget" type="number" step="0.01" class="form-input" />
+                <div class="input-with-icon">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <input name="Budget" type="number" step="1" class="form-input" placeholder="0" />
+                </div>
             </div>
             <div class="form-group">
                 <label>Status</label>
@@ -37,7 +42,7 @@
                 </select>
             </div>
             <div class="form-actions">
-                <button type="submit" class="btn btn-blue">Add Project</button>
+                <button type="submit" class="btn btn-blue">Create</button>
             </div>
         </form>
     </div>
