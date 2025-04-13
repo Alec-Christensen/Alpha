@@ -37,5 +37,39 @@ public class ProjectsController : Controller
         return RedirectToAction("Index");
     }
 
+    // GET: Hämta projektdata och visa Edit-modalen
+    [HttpGet("edit-project/{id}")]
+    public async Task<IActionResult> EditProject(int id)
+    {
+        var project = await _context.Projects.FindAsync(id);
+        if (project == null)
+            return NotFound();
+
+        return PartialView("Partials/Components/_EditProjectModal", project);
+    }
+
+    // POST: Spara ändringar i projektet
+    [HttpPost("edit/{id}")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, Project updatedProject)
+    {
+        if (!ModelState.IsValid)
+            return View("Partials/Components/_EditProjectModal", updatedProject);
+
+        var project = await _context.Projects.FindAsync(id);
+        if (project == null)
+            return NotFound();
+
+        project.ProjectName = updatedProject.ProjectName;
+        project.ClientName = updatedProject.ClientName;
+        project.Description = updatedProject.Description;
+        project.StartDate = updatedProject.StartDate;
+        project.EndDate = updatedProject.EndDate;
+        project.Budget = updatedProject.Budget;
+        project.Status = updatedProject.Status;
+
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index");
+    }
 }
 

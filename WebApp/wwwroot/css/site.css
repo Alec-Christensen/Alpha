@@ -455,6 +455,24 @@ section > .content {
     transition: background-color 0.2s ease-in-out;
 }
 
+button.dropdown-action {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+    padding: 0.5rem;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+    button.dropdown-action:hover {
+        background-color: var(--hover-color);
+    }
+
+
     .dropdown-action:hover {
         background-color: var(--hover-color);
     }
@@ -752,5 +770,6 @@ a {
     margin: 0 auto 1rem;
     display: block;
 }
+
 
 

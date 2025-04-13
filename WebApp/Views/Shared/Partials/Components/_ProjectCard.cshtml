@@ -17,10 +17,10 @@
             <div id="project-dropdown-@Model.ProjectName.Replace(" ", "-").ToLower()" class="dropdown">
                 <div class="dropdown-body">
                     <nav class="dropdown-actions">
-                        <a class="dropdown-action" href="#">
+                        <button class="dropdown-action btn-edit-project" type="button" data-project-id="@Model.Id">
                             <i class="fa-solid fa-pen-to-square"></i>
                             <span>Edit</span>
-                        </a>
+                        </button>
                         <div class="divider"></div>
                         <a class="dropdown-action remove" href="#">
                             <i class="fa-regular fa-trash-can"></i>

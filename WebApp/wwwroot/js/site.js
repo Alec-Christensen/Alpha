@@ -47,3 +47,53 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+/*
+AI-genererad kod (ChatGPT 4o):
+Denna kod hanterar visning av "Edit Project"-modalen via JavaScript.
+- När användaren klickar på en Edit-knapp hämtas en färdigifylld modal från servern via fetch.
+- Modalen läggs dynamiskt till i DOM och visas direkt utan att sidan laddas om.
+- Stängknapp och klick utanför modalen stänger den som förväntat.
+*/
+document.addEventListener("DOMContentLoaded", function () {
+    // Hantera Edit-knappar
+    document.querySelectorAll(".btn-edit-project").forEach(button => {
+        button.addEventListener("click", async () => {
+            const projectId = button.getAttribute("data-project-id");
+
+            try {
+                const response = await fetch(`/projects/edit-project/${projectId}`);
+                const modalHtml = await response.text();
+
+                // Ta bort befintlig modal om den finns
+                const existing = document.getElementById("editProjectModal");
+                if (existing) existing.remove();
+
+                // Lägg till modalen i sidan
+                const container = document.createElement("div");
+                container.innerHTML = modalHtml;
+                document.body.appendChild(container.firstElementChild);
+
+                // Visa modalen
+                document.getElementById("editProjectModal").classList.add("show");
+
+                // Lägg till stäng-logik
+                document.querySelector("#editProjectModal .close-modal").addEventListener("click", () => {
+                    document.getElementById("editProjectModal").classList.remove("show");
+                });
+
+                // Klick utanför för att stänga
+                window.addEventListener("click", function (e) {
+                    const modal = document.getElementById("editProjectModal");
+                    if (e.target === modal) {
+                        modal.classList.remove("show");
+                    }
+                });
+
+            } catch (err) {
+                console.error("Kunde inte ladda edit-modalen:", err);
+            }
+        });
+    });
+});
+
