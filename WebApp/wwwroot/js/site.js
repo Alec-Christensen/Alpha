@@ -39,12 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
         closeBtn.addEventListener("click", () => {
             modal.classList.remove("show");
         });
-
-        window.addEventListener("click", (e) => {
-            if (e.target === modal) {
-                modal.classList.remove("show");
-            }
-        });
     }
 });
 
