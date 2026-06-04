@@ -4,6 +4,18 @@ A project management portal built with ASP.NET Core MVC. Authenticated users can
 
 There is no role separation — any registered user can manage any project. This is an internal-facing tool, not a multi-tenant SaaS.
 
+## Live Demo
+https://alpha-production-954b.up.railway.app
+
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/c2e7114a-e861-410b-877b-13125d8f8eca" /></td>
+    <td><img src="https://github.com/user-attachments/assets/e267d053-2ff6-4057-bd27-c148286149e7" /></td>
+  </tr>
+</table>
+
 ---
 
 ## Solution structure
